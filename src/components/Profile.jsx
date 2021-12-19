@@ -1,4 +1,4 @@
-import { Text, VStack } from "@chakra-ui/react"
+import { Text, VStack, Image } from "@chakra-ui/react"
 
 import banner from "../assets/banner.jpg"
 import profile from "../assets/profile.jpg"

@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import Header from "./components/Header"
+import Main from "./components/Main"
 
 const App = () => {
   const checkIfWalletIsConnected = () => {
@@ -19,6 +20,7 @@ const App = () => {
   return (
     <>
       <Header />
+      <Main />
     </>
   )
 }
