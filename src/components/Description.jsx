@@ -7,7 +7,9 @@ import logo from '../assets/logo.png'
 const Description = ({ totalWaves }) => {
   return (
     <VStack>
-      <Text>Descripción</Text>
+      <Text fontSize="xl" fontWeight="semibold" w="full" align="start">
+        Descripción
+      </Text>
       <Box>
         <Text>Hola, soy Nestor</Text>
         <Text>
@@ -15,27 +17,27 @@ const Description = ({ totalWaves }) => {
           nuevas tecnologías, por ejemplo el backend de esta web está en un
           contrato inteligente de la tesnet Rinkeby de Ethereum. Interesante no?
         </Text>
-        <Text>
+        <Text my="4">
           Asi que puedes dejarme un saludo👋, emojis random 🍆🍭🎈, tu
           portafolio, un media gift de{' '}
-          <a href="https://giphy.com/" target="_blank" rel="noreferrer">
+          <Link href="https://giphy.com/" target="_blank" rel="noreferrer">
             Giphy
-          </a>{' '}
+          </Link>{' '}
           o lo que quieras y quedará guardado en la blockchain 🤯{' '}
         </Text>
       </Box>
-      <HStack>
+      <HStack w="full" color="#1ac9d1">
         <Link href="https://twitter.com/nestoredduardo" target="_blank">
-          <Icon as={BsTwitter} />
+          <Icon as={BsTwitter} w="6" h="6" />
         </Link>
         <Link>
-          <Icon as={BsInstagram} />
+          <Icon as={BsInstagram} w="6" h="6" />
         </Link>
         <Link>
-          <Icon as={AiFillGithub} />
+          <Icon as={AiFillGithub} w="6" h="6" />
         </Link>
         <Link>
-          <Icon as={AiFillLinkedin} />
+          <Icon as={AiFillLinkedin} w="6" h="6" />
         </Link>
       </HStack>
       <HStack>
