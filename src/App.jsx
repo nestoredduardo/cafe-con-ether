@@ -1,14 +1,27 @@
-import { Button, Grid } from '@chakra-ui/react'
+import {
+  Button,
+  Form,
+  FormControl,
+  FormLabel,
+  Grid,
+  Input,
+} from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { ethers } from 'ethers'
+import { useForm } from 'react-hook-form'
+
 import abi from './utils/WavePortal.json'
 
 import Header from './components/Header'
 import Main from './components/Main'
 
 const App = () => {
+  const { register, handleSubmit } = useForm()
+
   const [currentAccount, setCurrentAccount] = useState('')
   const [totalWaves, setTotalWaves] = useState('')
+  const [loading, setLoading] = useState(false)
+
   const contractAddress = '0x81F6FfF9137081904D414747bE32fb00F47245c3'
   const contractABI = abi.abi
 
@@ -53,7 +66,7 @@ const App = () => {
     }
   }
 
-  const wave = async () => {
+  const getWaveNumber = async () => {
     try {
       const { ethereum } = window
 
@@ -67,16 +80,40 @@ const App = () => {
         )
 
         let count = await wavePortalContract.getTotalWaves()
-        console.log('Retrieved total wave count...', count.toNumber())
+        console.log('Wave number', count.toNumber())
+        setTotalWaves(count.toNumber())
+      } else {
+        console.log("Ethereum object doesn't exist")
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
-        const waveTxn = await wavePortalContract.wave()
+  const wave = async (data) => {
+    try {
+      const { ethereum } = window
+
+      if (ethereum) {
+        const provider = new ethers.providers.Web3Provider(ethereum)
+        const signer = provider.getSigner()
+        const wavePortalContract = new ethers.Contract(
+          contractAddress,
+          contractABI,
+          signer
+        )
+
+        const waveTxn = await wavePortalContract.wave(
+          data.name,
+          data.message,
+          1
+        )
         console.log('Minting...', waveTxn.hash)
 
         await waveTxn.wait()
         console.log('Mined --', waveTxn.hash)
 
-        count = await wavePortalContract.getTotalWaves()
-        console.log('Retrieved total wave count...', count.toNumber())
+        getWaveNumber()
       } else {
         console.log("Ethereum object doesn't exist")
       }
@@ -87,6 +124,7 @@ const App = () => {
 
   useEffect(() => {
     checkIfWalletIsConnected()
+    getWaveNumber()
   }, [])
 
   return (
@@ -99,7 +137,17 @@ const App = () => {
             Conectar Wallet
           </Button>
         ) : (
-          <Button onClick={wave}>Escribe un mensaje</Button>
+          <form onSubmit={handleSubmit(wave)} autoComplete="off">
+            <FormControl>
+              <FormLabel>Nombre o Twitter username😎</FormLabel>
+              <Input {...register('name')} />
+            </FormControl>
+            <FormControl>
+              <FormLabel>Mensaje</FormLabel>
+              <Input {...register('message')} />
+            </FormControl>
+            <Button type="submit">Envía tu saludo</Button>
+          </form>
         )}
       </Grid>
     </>
