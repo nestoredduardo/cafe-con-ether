@@ -1,12 +1,16 @@
 import { Button, Grid } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { ethers } from 'ethers'
+import abi from './utils/WavePortal.json'
 
 import Header from './components/Header'
 import Main from './components/Main'
 
 const App = () => {
   const [currentAccount, setCurrentAccount] = useState('')
+  const [totalWaves, setTotalWaves] = useState('')
+  const contractAddress = '0x81F6FfF9137081904D414747bE32fb00F47245c3'
+  const contractABI = abi.abi
 
   const checkIfWalletIsConnected = async () => {
     try {
@@ -64,6 +68,17 @@ const App = () => {
 
         let count = await wavePortalContract.getTotalWaves()
         console.log('Retrieved total wave count...', count.toNumber())
+
+        const waveTxn = await wavePortalContract.wave()
+        console.log('Minting...', waveTxn.hash)
+
+        await waveTxn.wait()
+        console.log('Mined --', waveTxn.hash)
+
+        count = await wavePortalContract.getTotalWaves()
+        console.log('Retrieved total wave count...', count.toNumber())
+      } else {
+        console.log("Ethereum object doesn't exist")
       }
     } catch (error) {
       console.log(error)
