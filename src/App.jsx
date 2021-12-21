@@ -63,6 +63,8 @@ const App = () => {
 
       console.log('Connected', accounts[0])
       setCurrentAccount(accounts[0])
+      getWaveNumber()
+      getPartnerList()
     } catch (error) {
       console.log(error)
     }

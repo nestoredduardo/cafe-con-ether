@@ -18,7 +18,7 @@ const Description = ({ totalWaves }) => {
         <Text>
           Asi que puedes dejarme un saludo👋, emojis random 🍆🍭🎈, tu
           portafolio, un media gift de{' '}
-          <a href="https://giphy.com/" target="_blank">
+          <a href="https://giphy.com/" target="_blank" rel="noreferrer">
             Giphy
           </a>{' '}
           o lo que quieras y quedará guardado en la blockchain 🤯{' '}

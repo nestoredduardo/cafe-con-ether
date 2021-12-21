@@ -1,15 +1,27 @@
-import { Text, VStack, Image } from "@chakra-ui/react"
+import { Text, VStack, Image } from '@chakra-ui/react'
 
-import banner from "../assets/banner.jpg"
-import profile from "../assets/profile.jpg"
+import banner from '../assets/banner.jpg'
+import profile from '../assets/profile.jpg'
 
 const Profile = () => {
   return (
-    <VStack>
-      <Image src={banner} boxSize="full" />
-      <Image src={profile} boxSize="64px" borderRadius="full" />
-      <Text>Nestor Mamani</Text>
-      <Text>Web artisan 🦄</Text>
+    <VStack pos="relative">
+      <Image src={banner} boxSize="full" pb="10" />
+      <Image
+        src={profile}
+        boxSize="120px"
+        pos="absolute"
+        bottom="69"
+        borderRadius="full"
+        border="4px"
+        borderColor="white"
+      />
+      <Text fontSize="2xl" fontWeight="semibold">
+        Nestor Mamani
+      </Text>
+      <Text fontSize="xl" mt="0px">
+        Web artisan 🦄
+      </Text>
     </VStack>
   )
 }
