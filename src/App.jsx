@@ -5,6 +5,7 @@ import {
   FormLabel,
   Grid,
   Input,
+  Text,
 } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { ethers } from 'ethers'
@@ -154,14 +155,14 @@ const App = () => {
   return (
     <>
       <Header />
-      <Grid>
-        <Main />
+      <Main totalWaves={totalWaves} partnerList={partnerList}>
         {!currentAccount ? (
           <Button as="button" onClick={connectWallet}>
             Conectar Wallet
           </Button>
         ) : (
           <form onSubmit={handleSubmit(wave)} autoComplete="off">
+            <Text>Envía un saludo!</Text>
             <FormControl>
               <FormLabel>Nombre o Twitter username😎</FormLabel>
               <Input {...register('name')} />
@@ -173,7 +174,7 @@ const App = () => {
             <Button type="submit">Envía tu saludo</Button>
           </form>
         )}
-      </Grid>
+      </Main>
     </>
   )
 }

@@ -1,8 +1,10 @@
-import { VStack, Text, Box, HStack, Link, Icon } from "@chakra-ui/react"
-import { BsTwitter, BsInstagram } from "react-icons/bs"
-import { AiFillLinkedin, AiFillGithub } from "react-icons/ai"
+import { VStack, Text, Box, HStack, Link, Icon, Image } from '@chakra-ui/react'
+import { BsTwitter, BsInstagram } from 'react-icons/bs'
+import { AiFillLinkedin, AiFillGithub } from 'react-icons/ai'
 
-const Description = () => {
+import logo from '../assets/logo.png'
+
+const Description = ({ totalWaves }) => {
   return (
     <VStack>
       <Text>Descripción</Text>
@@ -15,7 +17,11 @@ const Description = () => {
         </Text>
         <Text>
           Asi que puedes dejarme un saludo👋, emojis random 🍆🍭🎈, tu
-          portafolio o lo que quieras y quedará guardado en la blockchain 🤯{" "}
+          portafolio, un media gift de{' '}
+          <a href="https://giphy.com/" target="_blank">
+            Giphy
+          </a>{' '}
+          o lo que quieras y quedará guardado en la blockchain 🤯{' '}
         </Text>
       </Box>
       <HStack>
@@ -36,6 +42,10 @@ const Description = () => {
         <Text>Web Dev</Text>
         <Text>Data Science</Text>
         <Text>Tech</Text>
+      </HStack>
+      <HStack>
+        <Image src={logo} boxSize="30px" height="auto" />
+        <Text>x {totalWaves} saludos</Text>
       </HStack>
     </VStack>
   )

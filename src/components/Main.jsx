@@ -1,13 +1,18 @@
-import { Box } from "@chakra-ui/react"
-import Description from "./Description"
+import { Box, Flex } from '@chakra-ui/react'
+import Description from './Description'
+import PartnerList from './PartnerList'
 
-import Profile from "./Profile"
+import Profile from './Profile'
 
-const Main = () => {
+const Main = ({ totalWaves, children, partnerList }) => {
   return (
     <Box>
       <Profile />
-      <Description />
+      <Flex direction="column">
+        <Description totalWaves={totalWaves} />
+        {children}
+      </Flex>
+      <PartnerList partnerList={partnerList} />
     </Box>
   )
 }
