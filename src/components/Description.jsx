@@ -6,7 +6,7 @@ import logo from '../assets/logo.png'
 
 const Description = ({ totalWaves }) => {
   return (
-    <VStack boxShadow="base" rounded="md">
+    <VStack boxShadow="base" rounded="md" mb="5">
       <Text fontSize="xl" fontWeight="semibold" w="full" align="start">
         Descripción
       </Text>

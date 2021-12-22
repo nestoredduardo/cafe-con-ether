@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Form,
   FormControl,
@@ -159,22 +160,42 @@ const App = () => {
       <Header />
       <Main totalWaves={totalWaves} partnerList={partnerList}>
         {!currentAccount ? (
-          <Button as="button" onClick={connectWallet}>
+          <Button
+            as="button"
+            onClick={connectWallet}
+            bgGradient="linear(to-r, #FFCC33, #E233FF)"
+          >
             Conectar Wallet
           </Button>
         ) : (
-          <form onSubmit={handleSubmit(wave)} autoComplete="off">
-            <Text>Envía un saludo!</Text>
-            <FormControl>
-              <FormLabel>Nombre o Twitter username😎</FormLabel>
-              <Input {...register('name')} />
-            </FormControl>
-            <FormControl>
-              <FormLabel>Mensaje</FormLabel>
-              <Input {...register('message')} />
-            </FormControl>
-            <Button type="submit">Envía tu saludo</Button>
-          </form>
+          <Box
+            boxShadow="base"
+            rounded="md"
+            px="4"
+            py="4"
+            border="1px"
+            borderColor="cyan.200"
+          >
+            <form onSubmit={handleSubmit(wave)} autoComplete="off">
+              <Text fontSize="xl">Envía un saludo!</Text>
+              <FormControl my="3">
+                <FormLabel>Nombre o Twitter username😎</FormLabel>
+                <Input {...register('name')} />
+              </FormControl>
+              <FormControl>
+                <FormLabel>Mensaje</FormLabel>
+                <Input {...register('message')} />
+              </FormControl>
+              <Button
+                type="submit"
+                bgGradient="linear(to-r, #FFCC33, #E233FF)"
+                color="white"
+                mt="3"
+              >
+                Envía tu saludo
+              </Button>
+            </form>
+          </Box>
         )}
       </Main>
     </>
