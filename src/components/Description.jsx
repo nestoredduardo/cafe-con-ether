@@ -6,7 +6,7 @@ import logo from '../assets/logo.png'
 
 const Description = ({ totalWaves }) => {
   return (
-    <VStack>
+    <VStack boxShadow="base" rounded="md">
       <Text fontSize="xl" fontWeight="semibold" w="full" align="start">
         Descripción
       </Text>
@@ -30,24 +30,56 @@ const Description = ({ totalWaves }) => {
         <Link href="https://twitter.com/nestoredduardo" target="_blank">
           <Icon as={BsTwitter} w="6" h="6" />
         </Link>
-        <Link>
+        <Link href="https://www.instagram.com/nestoredduardo/" target="_blank">
           <Icon as={BsInstagram} w="6" h="6" />
         </Link>
-        <Link>
+        <Link href="https://github.com/nestoredduardo" target="_blank">
           <Icon as={AiFillGithub} w="6" h="6" />
         </Link>
-        <Link>
+        <Link
+          href="https://www.linkedin.com/in/nestoredduardo/"
+          target="_blank"
+        >
           <Icon as={AiFillLinkedin} w="6" h="6" />
         </Link>
       </HStack>
       <HStack>
-        <Text>Web Dev</Text>
-        <Text>Data Science</Text>
-        <Text>Tech</Text>
+        <Text
+          bg="cyan.100"
+          color="cyan.500"
+          fontWeight="bold"
+          borderRadius="xl"
+          py="1"
+          px="2"
+        >
+          Web Dev
+        </Text>
+        <Text
+          bg="cyan.100"
+          color="cyan.500"
+          fontWeight="bold"
+          borderRadius="xl"
+          py="1"
+          px="2"
+        >
+          Data Science
+        </Text>
+        <Text
+          bg="cyan.100"
+          color="cyan.500"
+          fontWeight="bold"
+          borderRadius="xl"
+          py="1"
+          px="2"
+        >
+          Tech
+        </Text>
       </HStack>
-      <HStack>
+      <HStack py="3">
         <Image src={logo} boxSize="30px" height="auto" />
-        <Text>x {totalWaves} saludos</Text>
+        <Text color="#c661ed" fontWeight="bold">
+          x {totalWaves} saludos
+        </Text>
       </HStack>
     </VStack>
   )
