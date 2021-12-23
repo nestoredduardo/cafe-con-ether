@@ -6,7 +6,7 @@ import profile from '../assets/profile.jpg'
 const Profile = () => {
   return (
     <VStack pos="relative">
-      <Image src={banner} boxSize="full" pb="10" />
+      <Image src={banner} boxSize="full" height={{ md: '350px' }} pb="10" />
       <Image
         src={profile}
         boxSize="120px"

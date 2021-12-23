@@ -2,7 +2,7 @@ import { HStack, List, ListItem, Text, Image, Button } from '@chakra-ui/react'
 
 const PartnerList = ({ partnerList }) => {
   return (
-    <List mx="6">
+    <List mx="6" mb="6" display="flex" flexDirection="column">
       {partnerList ? (
         partnerList.map((partner, index) => {
           const name = partner[0] ? partner[0] : 'Someone'
@@ -14,10 +14,12 @@ const PartnerList = ({ partnerList }) => {
               boxShadow="md"
               px="3"
               py="2"
-              my="3"
               border="2px"
               borderColor="gray.200"
               borderRadius="xl"
+              minW="330px"
+              maxW="400px"
+              mx="auto"
             >
               <HStack>
                 <Text fontWeight="bold">{name}</Text>
@@ -32,7 +34,7 @@ const PartnerList = ({ partnerList }) => {
           )
         })
       ) : (
-        <Button isLoading />
+        <Button isLoading w="full" />
       )}
     </List>
   )

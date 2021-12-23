@@ -8,7 +8,7 @@ const Main = ({ totalWaves, children, partnerList }) => {
   return (
     <Box>
       <Profile />
-      <Flex direction="column" m="4" p="2">
+      <Flex direction={{ base: 'column', md: 'row' }} mx="4" mt="4" p="2">
         <Description totalWaves={totalWaves} />
         {children}
       </Flex>

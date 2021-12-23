@@ -164,6 +164,8 @@ const App = () => {
             as="button"
             onClick={connectWallet}
             bgGradient="linear(to-r, #FFCC33, #E233FF)"
+            color="white"
+            fontWeight="bold"
           >
             Conectar Wallet
           </Button>
@@ -175,6 +177,7 @@ const App = () => {
             py="4"
             border="1px"
             borderColor="cyan.200"
+            height="fit-content"
           >
             <form onSubmit={handleSubmit(wave)} autoComplete="off">
               <Text fontSize="xl">Envía un saludo!</Text>
