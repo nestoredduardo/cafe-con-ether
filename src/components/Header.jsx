@@ -4,7 +4,7 @@ import logo from '../assets/logo.png'
 
 const Header = () => {
   return (
-    <HStack px="8" py="4">
+    <HStack px={{ base: '8', xl: '64' }} py="4">
       <Image boxSize="60px" height="auto" src={logo} />
       <Text fontWeight="semibold" fontSize="2xl">
         EtherSays

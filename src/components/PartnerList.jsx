@@ -18,8 +18,9 @@ const PartnerList = ({ partnerList }) => {
               borderColor="gray.200"
               borderRadius="xl"
               minW="330px"
-              maxW="400px"
+              maxW={{ base: '400px', xl: '450px' }}
               mx="auto"
+              mb="6"
             >
               <HStack>
                 <Text fontWeight="bold">{name}</Text>

@@ -6,15 +6,14 @@ import Profile from './Profile'
 
 const Main = ({ totalWaves, children, partnerList }) => {
   return (
-    <Box>
+    <Box mx={{ xl: '64' }}>
       <Profile />
       <Flex
         direction={{ base: 'column', md: 'row' }}
-        mx="4"
         mt="4"
-        p="2"
-        mx={{ lg: '43' }}
-        justify={{ lg: 'space-around' }}
+        p={{ base: '2', xl: '0' }}
+        mx={{ base: '4', lg: '43', xl: '0' }}
+        justify={{ lg: 'space-around', xl: 'space-between' }}
       >
         <Description totalWaves={totalWaves} />
         {children}

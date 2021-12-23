@@ -132,15 +132,18 @@ const App = () => {
           signer
         )
 
-        const name = data.name || 'Someone'
+        const name = data.name == '' ? 'Someone' : data.name
 
         const waveTxn = await wavePortalContract.wave(name, data.message, 1)
         console.log('Minting...', waveTxn.hash)
+        setLoading(true)
 
         await waveTxn.wait()
         console.log('Mined --', waveTxn.hash)
+        setLoading(false)
 
         getWaveNumber()
+        getPartnerList()
       } else {
         console.log("Ethereum object doesn't exist")
       }
@@ -166,6 +169,10 @@ const App = () => {
             bgGradient="linear(to-r, #FFCC33, #E233FF)"
             color="white"
             fontWeight="bold"
+            width={{ base: 'fit-content', md: 'full' }}
+            maxW="400px"
+            mx="auto"
+            mb="8"
           >
             Conectar Wallet
           </Button>
@@ -178,7 +185,7 @@ const App = () => {
             border="1px"
             borderColor="cyan.200"
             height="fit-content"
-            w={{ lg: '320px' }}
+            w={{ lg: '320px', xl: '450px' }}
           >
             <form onSubmit={handleSubmit(wave)} autoComplete="off">
               <Text fontSize="xl">Envía un saludo!</Text>
@@ -192,6 +199,8 @@ const App = () => {
               </FormControl>
               <Button
                 type="submit"
+                isLoading={loading}
+                loadingText="Escribiendo en la blockchain..."
                 bgGradient="linear(to-r, #FFCC33, #E233FF)"
                 color="white"
                 mt="3"

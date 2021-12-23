@@ -12,7 +12,7 @@ const Description = ({ totalWaves }) => {
       mb="5"
       px="3"
       py="2"
-      maxW="400px"
+      maxW={{ base: '400px', xl: '490px' }}
       mx={{ base: 'auto', lg: '0' }}
     >
       <Text fontSize="xl" fontWeight="semibold" w="full" align="start">
