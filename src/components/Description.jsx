@@ -13,7 +13,7 @@ const Description = ({ totalWaves }) => {
       px="3"
       py="2"
       maxW="400px"
-      mx="auto"
+      mx={{ base: 'auto', lg: '0' }}
     >
       <Text fontSize="xl" fontWeight="semibold" w="full" align="start">
         Descripción

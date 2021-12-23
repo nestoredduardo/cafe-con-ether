@@ -178,6 +178,7 @@ const App = () => {
             border="1px"
             borderColor="cyan.200"
             height="fit-content"
+            w={{ lg: '320px' }}
           >
             <form onSubmit={handleSubmit(wave)} autoComplete="off">
               <Text fontSize="xl">Envía un saludo!</Text>

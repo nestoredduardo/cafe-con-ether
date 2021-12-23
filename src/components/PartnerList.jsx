@@ -2,7 +2,7 @@ import { HStack, List, ListItem, Text, Image, Button } from '@chakra-ui/react'
 
 const PartnerList = ({ partnerList }) => {
   return (
-    <List mx="6" mb="6" display="flex" flexDirection="column">
+    <List mx="6" mb="6">
       {partnerList ? (
         partnerList.map((partner, index) => {
           const name = partner[0] ? partner[0] : 'Someone'

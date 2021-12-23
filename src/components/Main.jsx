@@ -8,7 +8,14 @@ const Main = ({ totalWaves, children, partnerList }) => {
   return (
     <Box>
       <Profile />
-      <Flex direction={{ base: 'column', md: 'row' }} mx="4" mt="4" p="2">
+      <Flex
+        direction={{ base: 'column', md: 'row' }}
+        mx="4"
+        mt="4"
+        p="2"
+        mx={{ lg: '43' }}
+        justify={{ lg: 'space-around' }}
+      >
         <Description totalWaves={totalWaves} />
         {children}
       </Flex>
