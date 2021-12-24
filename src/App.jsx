@@ -25,7 +25,7 @@ const App = () => {
   const [partnerList, setPartnerList] = useState('')
   const [loading, setLoading] = useState(false)
 
-  const contractAddress = '0x81F6FfF9137081904D414747bE32fb00F47245c3'
+  const contractAddress = '0x87f71F915433aDFe43167666cd9BB943d852e763'
   const contractABI = abi.abi
 
   const checkIfWalletIsConnected = async () => {
@@ -134,7 +134,7 @@ const App = () => {
 
         const name = data.name == '' ? 'Someone' : data.name
 
-        const waveTxn = await wavePortalContract.wave(name, data.message, 1)
+        const waveTxn = await wavePortalContract.wave(name, data.message)
         console.log('Minting...', waveTxn.hash)
         setLoading(true)
 
