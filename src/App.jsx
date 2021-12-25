@@ -25,7 +25,7 @@ const App = () => {
   const [partnerList, setPartnerList] = useState('')
   const [loading, setLoading] = useState(false)
 
-  const contractAddress = '0x87f71F915433aDFe43167666cd9BB943d852e763'
+  const contractAddress = '0x5254614A0DE7EFc32D67501DdaD22c3aacceF182'
   const contractABI = abi.abi
 
   const checkIfWalletIsConnected = async () => {
