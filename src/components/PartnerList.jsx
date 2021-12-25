@@ -5,8 +5,8 @@ const PartnerList = ({ partnerList }) => {
     <List mx="6" mb="6">
       {partnerList ? (
         partnerList.map((partner, index) => {
-          const name = partner[0] ? partner[0] : 'Someone'
-          const message = partner[1]
+          const name = partner[1] ? partner[1] : 'Someone'
+          const message = partner[2]
           const gifLink = message.slice(message.length - 3) === 'gif'
           return (
             <ListItem
