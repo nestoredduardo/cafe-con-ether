@@ -1,10 +1,8 @@
 import {
   Box,
   Button,
-  Form,
   FormControl,
   FormLabel,
-  Grid,
   Input,
   Text,
 } from '@chakra-ui/react'
