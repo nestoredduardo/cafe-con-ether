@@ -18,6 +18,7 @@ import Main from './components/Main'
 const App = () => {
   const { register, handleSubmit } = useForm()
 
+  const [wavePortalContract, setWavePortalContract] = useState(null)
   const [currentAccount, setCurrentAccount] = useState('')
   const [totalWaves, setTotalWaves] = useState('')
   const [partnerList, setPartnerList] = useState('')
@@ -25,6 +26,23 @@ const App = () => {
 
   const contractAddress = '0x5254614A0DE7EFc32D67501DdaD22c3aacceF182'
   const contractABI = abi.abi
+
+  const getContract = () => {
+    const provider = new ethers.providers.InfuraProvider(
+      'rinkeby',
+      process.env.REACT_APP_INFURA_PROJECT_ID
+    )
+
+    const newWavePortalContract = new ethers.Contract(
+      contractAddress,
+      contractABI,
+      provider
+    )
+    setWavePortalContract(newWavePortalContract)
+
+    getWaveNumber(newWavePortalContract)
+    getPartnerList(newWavePortalContract)
+  }
 
   const checkIfWalletIsConnected = async () => {
     try {
@@ -39,7 +57,7 @@ const App = () => {
       const accounts = await ethereum.request({ method: 'eth_accounts' })
 
       if (accounts.length !== 0) {
-        const account = account[0]
+        const account = accounts[0]
         console.log('Found account:', account)
         setCurrentAccount(account)
       } else {
@@ -62,56 +80,37 @@ const App = () => {
 
       console.log('Connected', accounts[0])
       setCurrentAccount(accounts[0])
-      getWaveNumber()
-      getPartnerList()
     } catch (error) {
       console.log(error)
     }
   }
 
-  const getWaveNumber = async () => {
+  const getWaveNumber = async (wavePortalContract) => {
     try {
-      const { ethereum } = window
-
-      if (ethereum) {
-        const provider = new ethers.providers.Web3Provider(ethereum)
-        const signer = provider.getSigner()
-        const wavePortalContract = new ethers.Contract(
-          contractAddress,
-          contractABI,
-          signer
-        )
-
-        let count = await wavePortalContract.getTotalWaves()
-        console.log('Wave number', count.toNumber())
-        setTotalWaves(count.toNumber())
-      } else {
-        console.log("Ethereum object doesn't exist")
-      }
+      let count = await wavePortalContract.getTotalWaves()
+      console.log('Wave number', count.toNumber())
+      setTotalWaves(count.toNumber())
     } catch (error) {
       console.log(error)
     }
   }
 
-  const getPartnerList = async () => {
+  const getPartnerList = async (wavePortalContract) => {
     try {
-      const { ethereum } = window
+      const list = await wavePortalContract.getPartnerList()
+      console.log('PartnerList:', list)
+      setPartnerList(list)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
-      if (ethereum) {
-        const provider = new ethers.providers.Web3Provider(ethereum)
-        const signer = provider.getSigner()
-        const wavePortalContract = new ethers.Contract(
-          contractAddress,
-          contractABI,
-          signer
-        )
-
-        const list = await wavePortalContract.getPartnerList()
-        console.log('PartnerList:', list)
-        setPartnerList(list)
-      } else {
-        console.log("Ethereum object doesn't exist")
-      }
+  const changeToRinkebyNetwork = async () => {
+    try {
+      await window.ethereum.request({
+        method: 'wallet_switchEthereumChain',
+        params: [{ chainId: '0x4' }],
+      })
     } catch (error) {
       console.log(error)
     }
@@ -122,6 +121,7 @@ const App = () => {
       const { ethereum } = window
 
       if (ethereum) {
+        await changeToRinkebyNetwork()
         const provider = new ethers.providers.Web3Provider(ethereum)
         const signer = provider.getSigner()
         const wavePortalContract = new ethers.Contract(
@@ -130,7 +130,7 @@ const App = () => {
           signer
         )
 
-        const name = data.name == '' ? 'Someone' : data.name
+        const name = data.name === '' ? 'Someone' : data.name
 
         const waveTxn = await wavePortalContract.wave(name, data.message)
         console.log('Minting...', waveTxn.hash)
@@ -140,9 +140,10 @@ const App = () => {
         console.log('Mined --', waveTxn.hash)
         setLoading(false)
 
-        getWaveNumber()
-        getPartnerList()
+        getWaveNumber(wavePortalContract)
+        getPartnerList(wavePortalContract)
       } else {
+        alert('Make sure you have Metamask')
         console.log("Ethereum object doesn't exist")
       }
     } catch (error) {
@@ -151,9 +152,8 @@ const App = () => {
   }
 
   useEffect(() => {
+    getContract()
     checkIfWalletIsConnected()
-    getWaveNumber()
-    getPartnerList()
   }, [])
 
   return (
@@ -189,11 +189,11 @@ const App = () => {
               <Text fontSize="xl">Envía un saludo!</Text>
               <FormControl my="3">
                 <FormLabel>Nombre o Twitter username😎</FormLabel>
-                <Input {...register('name')} />
+                <Input required={true} {...register('name')} />
               </FormControl>
               <FormControl>
                 <FormLabel>Mensaje</FormLabel>
-                <Input {...register('message')} />
+                <Input required={true} {...register('message')} />
               </FormControl>
               <Button
                 type="submit"

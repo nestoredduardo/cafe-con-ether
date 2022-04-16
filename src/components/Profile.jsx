@@ -1,7 +1,7 @@
 import { Text, VStack, Image } from '@chakra-ui/react'
 
 import banner from '../assets/banner.jpg'
-import profile from '../assets/profile.jpg'
+import profile from '../assets/profile.png'
 
 const Profile = () => {
   return (

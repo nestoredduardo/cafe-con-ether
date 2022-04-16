@@ -22,7 +22,7 @@ const Description = ({ totalWaves }) => {
         <Text>Hola, soy Nestor</Text>
         <Text>
           Desarrollo páginas web como en la que estás ahora y me gusta probar
-          nuevas tecnologías, por ejemplo el backend de esta web está en un
+          nuevas tecnologías, por ejemplo, el backend de esta web está en un
           contrato inteligente de la tesnet Rinkeby de Ethereum. Interesante no?
         </Text>
         <Text my="4">
